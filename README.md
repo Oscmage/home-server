@@ -24,13 +24,14 @@ This setup includes:
 - Local network access
 - Cloudflare account
 - Git repository for FluxCD
+- Terragrunt installed
 
-### Mac Mini
+### Mac Prerequisites
 
-1. Enable remote login over local network. Take note of the address of the machine.
+1. Enable remote login over local network. Take note of the address of the machine. Make sure that you create a user with admin privilegies.
 2. Make sure you have `docker` and `brew` installed on the Mac.
-3. 
 
 ## Getting Started
 
-[Documentation to be added as the setup progresses] 
+1. Rename/copy the `.env.template` file to `.env` and update the values.
+2. We are now going to make sure to create the cluster (which will be running k3s with the help of k3d), this is done through terragrunt. Run `terragrunt apply` in `/terragrunt/environments/mac_mini/k3d`
