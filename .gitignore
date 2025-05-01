@@ -1,0 +1,47 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories and files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Terraform/Terragrunt
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars
+.terragrunt-cache/
+.terraform.lock.hcl
+
+# Kubernetes
+kubeconfig
+*.kubeconfig
+.kube/
+
+# Secrets
+*.pem
+*.key
+*.crt
+*.env
+.env*
+secrets/
+
+# Helm
+*.tgz
+.helm/
+charts/*/charts/
+charts/*/requirements.lock
+
+# IDE and Development
+.cursor/
+node_modules/
+*.log 
