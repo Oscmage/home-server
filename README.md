@@ -1,6 +1,11 @@
 # Home Server Setup
 
-This repository contains the infrastructure as code and configuration for a Mac home server setup. This has only been tested with a Mac Mini M1 (2020)
+This repository contains the infrastructure as code and configuration for a Mac home server setup. This has only been tested with a Mac Mini M1 (2020).
+
+## Is this overkill?
+
+100%, this is mostly for learning and fun.
+
 
 ## Project Structure
 
