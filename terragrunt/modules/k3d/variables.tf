@@ -19,11 +19,6 @@ variable "target_ssh_port" {
   default     = 22
 }
 
-variable "k3d_version" {
-  description = "The version of k3d to install"
-  type        = string
-}
-
 variable "cluster_name" {
   description = "The name of the cluster to create"
   type        = string

@@ -11,6 +11,5 @@ locals {
   target_user     = try(local.env_vars["TARGET_USER"], error("TARGET_USER is required in .env file"))
   target_password = try(local.env_vars["TARGET_PASSWORD"], error("TARGET_PASSWORD is required in .env file"))
   target_ssh_port = try(local.env_vars["TARGET_SSH_PORT"], "22")  # Default to 22 if not specified
-  k3d_version     = try(local.env_vars["K3D_VERSION"], error("K3D_VERSION is required in .env file"))
   cluster_name    = try(local.env_vars["CLUSTER_NAME"], error("CLUSTER_NAME is required in .env file"))
 } 

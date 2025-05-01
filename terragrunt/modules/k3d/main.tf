@@ -37,7 +37,7 @@ resource "null_resource" "install_k3d" {
   provisioner "remote-exec" {
     inline = [
       "chmod +x /tmp/install_k3d_target.sh",
-      "if ! /tmp/install_k3d_target.sh ${var.k3d_version} ${var.target_password} ${var.cluster_name}; then",
+      "if ! /tmp/install_k3d_target.sh ${var.target_password} ${var.cluster_name}; then",
       "  echo 'Script failed with exit code $?'",
       "  exit 1",
       "fi",

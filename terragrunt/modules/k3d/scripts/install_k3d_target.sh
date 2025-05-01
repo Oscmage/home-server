@@ -1,15 +1,7 @@
 #!/bin/bash
 
-# Check if required arguments are provided
-if [ $# -lt 2 ]; then
-    echo "Usage: $0 <k3d_version> <password>"
-    echo "Example: $0 v1.27.4+k3d1 mypassword"
-    exit 1
-fi
-
-K3D_VERSION=$1
-PASSWORD=$2
-CLUSTER_NAME=$3
+PASSWORD=$1
+CLUSTER_NAME=$2
 
 # Function to run sudo commands with password
 run_sudo() {
@@ -22,27 +14,40 @@ export PATH="/usr/local/bin:$PATH"
 [ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
 [ -f "$HOME/.zshrc" ] && source "$HOME/.zshrc"
 
+# Add Homebrew to PATH
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
 # Start Docker Desktop
 if ! open /Applications/Docker.app; then
     echo "Failed to start Docker Desktop. Please make sure it is installed and started manually."
     exit 1
 fi
 
-# Install k3d with Docker as container runtime
-echo "Installing k3d version $K3D_VERSION..."
-run_sudo curl -sfL https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | TAG=v5.0.0 bash
 
 # check that k3d is installed
 if ! command -v k3d &> /dev/null; then
-    echo "k3d is not installed. Exiting."
-    exit 1
+    # Install k3d with Docker as container runtime
+    echo "Installing k3d..."
+    brew install k3d
+else
+    echo "k3d is already installed"
 fi
 
-# create a cluster
-k3d cluster create "$CLUSTER_NAME"
+# Check if cluster exists
+if k3d cluster list | grep -q "$CLUSTER_NAME"; then
+    echo "Cluster $CLUSTER_NAME already exists. Skipping creation."
+else
+    # create a cluster
+    k3d cluster create "$CLUSTER_NAME"
+fi
 
 # install kubectl
-run_sudo brew install kubectl
+if ! command -v kubectl &> /dev/null; then
+    echo "Installing kubectl..."
+    brew install kubectl
+else
+    echo "kubectl is already installed"
+fi
 
 # Ensure PATH is updated after installations
 export PATH="/usr/local/bin:$PATH"
