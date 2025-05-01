@@ -9,7 +9,6 @@ This repository contains the infrastructure as code and configuration for a Mac 
 ## Project Structure
 
 - `/terragrunt`: Contains Terragrunt configurations for infrastructure management
-- `/clusters`: Kubernetes (k3d) cluster configurations and manifests
 - `/helm`: Helm charts for application deployments
 
 ## Overview
@@ -30,7 +29,7 @@ This setup includes:
 - Git repository for FluxCD
 - Terragrunt installed
 
-### Mac Prerequisites
+### Mac (Server) Prerequisites
 
 1. Enable remote login over local network. Take note of the address of the machine. Make sure that you create a user with admin privilegies.
 2. Make sure you have `docker` and `brew` installed on the Mac.
