@@ -1,12 +1,6 @@
 #!/bin/bash
 
-PASSWORD=$1
-CLUSTER_NAME=$2
-
-# Function to run sudo commands with password
-run_sudo() {
-    echo "$PASSWORD" | sudo -S "$@"
-}
+CLUSTER_NAME=$1
 
 # Set up environment
 export PATH="/usr/local/bin:$PATH"
