@@ -7,12 +7,13 @@ spec:
   interval: 1m
   chart:
     spec:
-      chart: ./helm/charts/nginx
+      chart: charts/nginx
       sourceRef:
         kind: GitRepository
         name: flux-system
+        namespace: flux-system
       interval: 1m
   values:
     service:
       type: ClusterIP
-      port: 80 
+      port: 80
