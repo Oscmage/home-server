@@ -20,7 +20,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./helm
+  path: ./helm/flux-releases
   prune: true
   sourceRef:
     kind: GitRepository
