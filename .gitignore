@@ -33,6 +33,7 @@ kubeconfig
 *.crt
 *.env
 .env*
+!.env.template
 secrets/
 
 # Helm
