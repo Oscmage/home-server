@@ -6,7 +6,6 @@ This repository contains the infrastructure as code and configuration for a Mac 
 
 100%, this is mostly for learning and fun.
 
-
 ## Project Structure
 
 - `/terragrunt`: Contains Terragrunt configurations for infrastructure management

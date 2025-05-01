@@ -11,15 +11,6 @@ remote_state {
   }
 }
 
-# Generate a provider block
-generate "provider" {
-  path      = "provider.tf"
-  if_exists = "overwrite_terragrunt"
-  contents  = <<EOF
-provider "null" {}
-EOF
-}
-
 # Configure root level variables that all resources can inherit
 inputs = {
   target_host     = local.vars.locals.target_host
