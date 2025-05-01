@@ -8,7 +8,11 @@ locals {
 }
 
 terraform {
-  source = "../../../modules/k3d"
+  source = "../../../modules/fluxcd"
+}
+
+dependencies {
+  paths = ["../k3d"]
 }
 
 inputs = {
@@ -16,5 +20,9 @@ inputs = {
   target_user     = local.vars.locals.target_user
   target_password = local.vars.locals.target_password
   target_ssh_port = local.vars.locals.target_ssh_port
-  cluster_name    = local.vars.locals.cluster_name
+  git_repository = local.vars.locals.git_repository
+  git_branch     = local.vars.locals.git_branch
+  target_path    = local.vars.locals.target_path
+  github_token   = local.vars.locals.github_token
+  github_user    = local.vars.locals.github_user
 } 

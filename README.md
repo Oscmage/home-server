@@ -38,4 +38,4 @@ This setup includes:
 ## Getting Started
 
 1. Rename/copy the `.env.template` file to `.env` and update the values.
-2. We are now going to make sure to create the cluster (which will be running k3s with the help of k3d), this is done through terragrunt. Run `terragrunt apply` in `/terragrunt/environments/mac_mini/k3d`
+2. We are now going to make sure to create the cluster (which will be running k3s with the help of k3d), and install fluxcd this is done through terragrunt. Run `terragrunt run-all apply` in `/terragrunt/environments/mac_mini`

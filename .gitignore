@@ -46,3 +46,6 @@ charts/*/requirements.lock
 .cursor/
 node_modules/
 *.log 
+
+# Terragrunt state
+/terragrunt/state/

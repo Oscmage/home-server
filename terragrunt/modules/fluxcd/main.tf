@@ -18,9 +18,8 @@ locals {
   }
 }
 
-
-# Install k3d
-resource "null_resource" "install_k3d" {
+# Install FluxCD
+resource "null_resource" "install_fluxcd" {
   # Establish SSH connection
   connection {
     type     = local.ssh_connection.type
@@ -30,19 +29,14 @@ resource "null_resource" "install_k3d" {
     password = local.ssh_connection.password
   }
 
-  provisioner "file" {
-    source      = "scripts/install_k3d_target.sh"
-    destination = "/tmp/install_k3d_target.sh"
-  }
-  
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/install_k3d_target.sh",
-      "if ! /tmp/install_k3d_target.sh ${var.cluster_name}; then",
-      "  echo 'Script failed with exit code $?'",
-      "  exit 1",
-      "fi",
-      "rm -f /tmp/install_k3d_target.sh"
+      "export PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"",
+      "brew install fluxcd/tap/flux",
+      "export GITHUB_TOKEN=${var.github_token}",
+      "export GITHUB_USER=${var.github_user}",
+      "flux check --pre",
+      "flux bootstrap github --token-auth --owner=${var.github_user} --repository=${var.git_repository} --branch=main --path=${var.target_path} --personal --reconcile --private=false --force"
     ]
   }
 } 

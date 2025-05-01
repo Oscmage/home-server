@@ -32,7 +32,7 @@ if k3d cluster list | grep -q "$CLUSTER_NAME"; then
     echo "Cluster $CLUSTER_NAME already exists. Skipping creation."
 else
     # create a cluster
-    k3d cluster create "$CLUSTER_NAME"
+    k3d cluster create "$CLUSTER_NAME" --image rancher/k3s:latest
 fi
 
 # install kubectl
