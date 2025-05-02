@@ -1,0 +1,8 @@
+namespace: postgresql
+
+postgresql:
+  primary:
+    persistence:
+      size: 8Gi
+  image:
+    tag: 17.4.0
