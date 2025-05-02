@@ -3,8 +3,20 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+# NAMESPACES
 - ../../helm/namespaces/immich.yaml
+- ../../helm/namespaces/cloudflare.yaml
+- ../../helm/namespaces/postgresql.yaml
+# STORAGE CLASSES
 - ../../helm/storage-classes/local-retain.yaml
+# PVCs
 - ../../helm/pvcs/immich.yaml
+# REPOSITORIES
 - ../../helm/flux-helm-repositories/immich.yaml
+- ../../helm/flux-helm-repositories/cloudflare.yaml
+- ../../helm/flux-helm-repositories/postgresql.yaml
+# RELEASES
+- ../../helm/flux-helm-releases/postgresql.yaml
 #- ../../helm/flux-helm-releases/immich.yaml
+#- ../../helm/flux-helm-releases/cloudflare_tunnel.yaml
+
