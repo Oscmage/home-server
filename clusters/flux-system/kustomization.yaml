@@ -16,7 +16,7 @@ resources:
 - ../../helm/flux-helm-repositories/immich.yaml
 - ../../helm/flux-helm-repositories/cloudflare.yaml
 # RELEASES
-#- ../../helm/flux-helm-releases/postgresql.yaml
+- ../../helm/flux-helm-releases/postgresql.yaml
 #- ../../helm/flux-helm-releases/immich.yaml
 #- ../../helm/flux-helm-releases/cloudflare_tunnel.yaml
 
