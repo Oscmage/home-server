@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - gotk-components.yaml
 - gotk-sync.yaml
+- ../../helm/namespaces/immich.yaml
+- ../../helm/storage-classes/local-retain.yaml
 - ../../helm/flux-helm-releases/immich.yaml
 - ../../helm/flux-helm-releases/nginx-helmrelease.yaml
-- ../../helm/storage-classes/local-retain.yaml
