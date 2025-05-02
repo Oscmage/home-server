@@ -5,6 +5,8 @@ metadata:
   namespace: immich
 spec:
   interval: 5m
+  install:
+    createNamespace: true
   chart:
     spec:
       chart: immich
