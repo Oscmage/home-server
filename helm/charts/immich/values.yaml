@@ -1,0 +1,37 @@
+namespace: immich
+
+
+pvc:
+  name: immich-library
+  size: 256Gi
+
+storageClass:
+  name: local-retain
+  reclaimPolicy: Retain
+  volumeBindingMode: WaitForFirstConsumer
+
+immich:
+  image:
+    tag: v1.132.3
+  immich:
+    persistence:
+      library:
+        enabled: true
+        # Chart doesn't currently support dynamic PVCs, hence we've created our own pvc
+        # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
+        existingClaim: immich-library
+    server:
+      metrics:
+        enabled: true
+  redis:
+    enabled: true
+  typesense:
+    enabled: true
+  
+  env:
+    DB_HOSTNAME: postgresql.postgresql
+    DB_DATABASE_NAME: immich
+    DB_USERNAME: immich
+    DB_PASSWORD: TODO
+
+

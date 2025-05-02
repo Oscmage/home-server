@@ -2,7 +2,16 @@ namespace: postgresql
 
 postgresql:
   primary:
+    initdb:
+      scripts: |
+          CREATE EXTENSION vectors;
+        
     persistence:
       size: 8Gi
   image:
     tag: 17.4.0
+
+  global:
+    auth:
+      username: immich
+      password: TODO
