@@ -20,12 +20,12 @@ spec:
       persistence:
         library:
           enabled: true
+          # Chart doesn't currently support dynamic PVCs
+          # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
           existingClaim: immich-library
       server:
         metrics:
           enabled: true
-    postgres:
-      enabled: true
     redis:
       enabled: true
     typesense:

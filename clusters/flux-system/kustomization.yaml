@@ -7,4 +7,4 @@ resources:
 - ../../helm/storage-classes/local-retain.yaml
 - ../../helm/pvcs/immich.yaml
 - ../../helm/flux-helm-repositories/immich.yaml
-- ../../helm/flux-helm-releases/immich.yaml
+#- ../../helm/flux-helm-releases/immich.yaml
