@@ -1,0 +1,30 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: immich
+  namespace: immich
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: immich
+      version: v1.132.3
+      sourceRef:
+        kind: HelmRepository
+        name: immich-charts
+        namespace: immich
+  values:
+    immich:
+      persistence:
+        library:
+          enabled: true
+          existingClaim: local-retain
+      server:
+        metrics:
+          enabled: true
+    postgres:
+      enabled: true
+    redis:
+      enabled: true
+    typesense:
+      enabled: true
