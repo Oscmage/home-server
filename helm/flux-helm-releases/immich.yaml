@@ -20,7 +20,8 @@ spec:
       persistence:
         library:
           enabled: true
-          existingClaim: local-retain
+          storageClass: local-retain
+          size: 256Gi
       server:
         metrics:
           enabled: true
