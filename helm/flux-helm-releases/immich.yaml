@@ -8,12 +8,14 @@ spec:
   chart:
     spec:
       chart: immich
-      version: v1.132.3
+      version: 0.9.3
       sourceRef:
         kind: HelmRepository
         name: immich-charts
         namespace: immich
   values:
+    image:
+      tag: v1.132.3
     immich:
       persistence:
         library:
