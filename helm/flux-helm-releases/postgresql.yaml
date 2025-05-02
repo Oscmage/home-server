@@ -7,13 +7,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: postgresql
-      version: 16.6.6
+      chart: ./helm/charts/postgresql
       sourceRef:
-        kind: HelmRepository
-        name: bitnami-charts
-        namespace: bitnami
-  values:
-    image:
-      tag: 17.4.0
-    
+        kind: GitRepository
+        name: flux-system
