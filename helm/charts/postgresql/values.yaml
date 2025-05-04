@@ -5,22 +5,52 @@ postgresql:
     registry: docker.io
     repository: tensorchord/pgvecto-rs
     tag: pg17-v0.0.0-nightly.20250227
+    debug: true
+
+  auth:
+    database: immich
+    username: immich
+    password: your_secure_password  # Replace this securely
 
   primary:
+    containerSecurityContext:
+      enabled: false  # Avoids read-only file system issues
+
+    podSecurityContext:
+      fsGroup: 1001
+
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_preload_libraries=vectors.so"
+      - "-c"
+      - "search_path='$user', public, vectors"
+      - "-c"
+      - "logging_collector=on"
+
     initdb:
+      args: "--data-checksums"
       scripts:
         enable_vectors.sql: |
           CREATE EXTENSION vectors;
 
     persistence:
+      enabled: true
       size: 8Gi
+      storageClass: ""  # Set this to your storage class if needed
 
-  auth:
-    database: immich
-    username: immich
-    password: TODO
+    resources:
+      requests:
+        memory: 512Mi
+        cpu: 250m
+      limits:
+        memory: 1Gi
+        cpu: 500m
 
+  volumePermissions:
+    enabled: true
 
 global:
+  storageClass: ""  # Optional, use if your cluster needs a default
   security:
     allowInsecureImages: true
