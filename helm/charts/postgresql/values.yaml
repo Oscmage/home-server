@@ -9,7 +9,9 @@ postgresql:
     persistence:
       size: 8Gi
   image:
-    tag: 17.4.0
+    registry: docker.io
+    repository: tensorchord/pgvecto-rs
+    tag: pg17-v0.0.0-nightly.20250227
 
   auth:
     database: immich
