@@ -27,18 +27,6 @@ postgresql:
       - name: PGSOCKET_DIR
         value: /tmp
 
-    extraVolumes:
-      - name: postgresql-run
-        emptyDir: {}
-      - name: postgresql-log
-        emptyDir: {}
-
-    extraVolumeMounts:
-      - name: postgresql-run
-        mountPath: /var/run/postgresql
-      - name: postgresql-log
-        mountPath: /var/log/postgresql
-
   auth:
     database: immich
     username: immich
