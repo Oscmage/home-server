@@ -13,5 +13,6 @@ postgresql:
 
   global:
     auth:
+      database: immich
       username: immich
       password: TODO
