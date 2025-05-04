@@ -8,6 +8,22 @@ postgresql:
           CREATE EXTENSION vectors;
     persistence:
       size: 8Gi
+    securityContext:
+      enabled: true
+      fsGroup: 1001
+      runAsUser: 1001
+    containerSecurityContext:
+      enabled: true
+      runAsUser: 1001
+      runAsNonRoot: true
+    podSecurityContext:
+      enabled: true
+      fsGroup: 1001
+    extraEnvVars:
+      - name: PGDATA
+        value: /bitnami/postgresql/data
+      - name: PGSOCKET_DIR
+        value: /tmp
   image:
     registry: docker.io
     repository: tensorchord/pgvecto-rs
@@ -21,3 +37,6 @@ postgresql:
   global:
     security:
       allowInsecureImages: true
+
+  volumePermissions:
+    enabled: true
