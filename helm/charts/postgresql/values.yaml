@@ -1,42 +1,60 @@
 namespace: postgresql
 
 postgresql:
+  image:
+    registry: docker.io
+    repository: tensorchord/pgvecto-rs
+    tag: pg17-v0.0.0-nightly.20250227
+
   primary:
     initdb:
       scripts:
         enable_vectors.sql: |
           CREATE EXTENSION vectors;
+
     persistence:
       size: 8Gi
+
     securityContext:
       enabled: true
       fsGroup: 1001
       runAsUser: 1001
+
     containerSecurityContext:
       enabled: true
-      runAsUser: 1001
-      runAsNonRoot: true
+      runAsUser: 0               # Temporarily use root to avoid permission issues
+      runAsNonRoot: false        # Set to true once it's verified that 1001 works
+
     podSecurityContext:
       enabled: true
       fsGroup: 1001
+
     extraEnvVars:
       - name: PGDATA
         value: /bitnami/postgresql/data
       - name: PGSOCKET_DIR
         value: /tmp
-  image:
-    registry: docker.io
-    repository: tensorchord/pgvecto-rs
-    tag: pg17-v0.0.0-nightly.20250227
+
+    extraVolumes:
+      - name: postgresql-run
+        emptyDir: {}
+      - name: postgresql-log
+        emptyDir: {}
+
+    extraVolumeMounts:
+      - name: postgresql-run
+        mountPath: /var/run/postgresql
+      - name: postgresql-log
+        mountPath: /bitnami/postgresql/log
 
   auth:
     database: immich
     username: immich
     password: TODO
 
-  global:
-    security:
-      allowInsecureImages: true
-
   volumePermissions:
     enabled: true
+
+global:
+  security:
+    allowInsecureImages: true
