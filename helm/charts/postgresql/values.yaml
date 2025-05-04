@@ -17,3 +17,7 @@ postgresql:
     database: immich
     username: immich
     password: TODO
+
+  global:
+    security:
+      allowInsecureImages: true
