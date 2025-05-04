@@ -16,20 +16,6 @@ postgresql:
       size: 8Gi
       mountPath: /var/lib/postgresql/data
 
-    securityContext:
-      enabled: true
-      fsGroup: 1001
-      runAsUser: 1001
-
-    containerSecurityContext:
-      enabled: true
-      runAsUser: 0               # Temporarily use root to avoid permission issues
-      runAsNonRoot: false        # Set to true once it's verified that 1001 works
-
-    podSecurityContext:
-      enabled: true
-      fsGroup: 1001
-
     extraEnvVars:
       - name: PGDATA
         value: /var/lib/postgresql/data
