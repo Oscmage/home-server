@@ -1,6 +1,5 @@
 namespace: immich
 
-
 pvc:
   name: immich-library
   size: 256Gi
@@ -34,4 +33,24 @@ immich:
     DB_USERNAME: immich
     DB_PASSWORD: TODO
 
+# Immich requires a PostgreSQL database with pgvecto-rs installed
+# Sadly we have to maintain our own PostgreSQL deployment for now
+# The bitnami postgresql chart does not support pgvecto-rs easily
+postgresql:
+  image: 
+    repository: tensorchord/pgvecto-rs
+    tag: pg17-v0.0.0-nightly.20250227
+    pullPolicy: IfNotPresent
 
+  postgresql:
+    database: immich
+    user: immich
+    password: TODO
+    dataChecksum: "--data-checksums"
+
+  persistence:
+    size: 8Gi
+
+  service:
+    type: ClusterIP
+    port: 5432

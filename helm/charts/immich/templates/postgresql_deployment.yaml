@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgresql
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgresql
+  template:
+    metadata:
+      labels:
+        app: postgresql
+    spec:
+      # Without this we are unable to write to /var/lib/postgresql/data
+      initContainers:
+      - name: fix-permissions
+        image: busybox
+        command: ["sh", "-c", "chown -R 999:999 /var/lib/postgresql/data"]
+        volumeMounts:
+          - name: data
+            mountPath: /var/lib/postgresql/data
+        securityContext:
+          runAsUser: 0
+      securityContext:
+        runAsUser: 999
+        runAsGroup: 999
+        fsGroup: 999
+      containers:
+        - name: postgres
+          image: "{{ .Values.postgresql.image.repository }}:{{ .Values.postgresql.image.tag }}"
+          imagePullPolicy: {{ .Values.postgresql.image.pullPolicy }}
+          env:
+            - name: POSTGRES_USER
+              value: "{{ .Values.postgresql.postgresql.user }}"
+            - name: POSTGRES_PASSWORD
+              value: "{{ .Values.postgresql.postgresql.password }}"
+            - name: POSTGRES_DB
+              value: "{{ .Values.postgresql.postgresql.database }}"
+            - name: POSTGRES_INITDB_ARGS
+              value: "{{ .Values.postgresql.postgresql.dataChecksum }}"
+            - name: POSTGRES_EXTRA_CONFIG
+              value: "-c shared_preload_libraries=vectors.so -c search_path=$$user,public,vectors -c logging_collector=on -c max_wal_size=2GB -c shared_buffers=512MB -c wal_compression=on"
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: data
+              mountPath: /var/lib/postgresql/data
+            - name: init-sql
+              mountPath: /docker-entrypoint-initdb.d/init.sql
+              subPath: init.sql
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: postgresql
+        - name: init-sql
+          configMap:
+            name: pgvecto-init-sql
