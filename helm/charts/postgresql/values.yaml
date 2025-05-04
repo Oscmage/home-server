@@ -3,9 +3,7 @@ namespace: postgresql
 postgresql:
   primary:
     initdb:
-      scripts: |
-          CREATE EXTENSION vectors;
-        
+      scriptsConfigMap: postgresql-init-scripts
     persistence:
       size: 8Gi
   image:
