@@ -17,4 +17,7 @@ locals {
   git_repository  = try(local.env_vars["GIT_REPOSITORY"], error("GIT_REPOSITORY is required in .env file"))
   git_branch      = try(local.env_vars["GIT_BRANCH"], "main")
   target_path     = try(local.env_vars["TARGET_PATH"], error("TARGET_PATH is required in .env file"))
+  db_password     = try(local.env_vars["DB_PASSWORD"], error("DB_PASSWORD is required in .env file"))
+  immich_version  = try(local.env_vars["IMMICH_VERSION"], "release")
+  cloudflare_tunnel_token = try(local.env_vars["CLOUDFLARE_TUNNEL_TOKEN"], error("CLOUDFLARE_TUNNEL_TOKEN is required in .env file"))
 } 
