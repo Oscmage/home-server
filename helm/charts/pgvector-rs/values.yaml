@@ -1,0 +1,19 @@
+name: immich
+
+image:
+  repository: tensorchord/pgvecto-rs
+  tag: pg14-v0.2.0
+  pullPolicy: IfNotPresent
+
+postgres:
+  user: immich
+  password: supersecret
+  database: immich
+  dataChecksum: "--data-checksums"
+
+persistence:
+  size: 8Gi
+
+service:
+  type: ClusterIP
+  port: 5432
