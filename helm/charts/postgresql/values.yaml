@@ -10,13 +10,17 @@ postgresql:
   auth:
     database: immich
     username: immich
-    password: your_secure_password  # Replace this securely
+    password: TODO
 
   primary:
     containerSecurityContext:
-      enabled: false  # Avoids read-only file system issues
+      enabled: true
+      runAsUser: 1001
+      runAsNonRoot: true
+      allowPrivilegeEscalation: false
 
     podSecurityContext:
+      enabled: true
       fsGroup: 1001
 
     command:
@@ -37,7 +41,7 @@ postgresql:
     persistence:
       enabled: true
       size: 8Gi
-      storageClass: ""  # Set this to your storage class if needed
+      storageClass: ""  # Set this if needed
 
     resources:
       requests:
@@ -51,6 +55,6 @@ postgresql:
     enabled: true
 
 global:
-  storageClass: ""  # Optional, use if your cluster needs a default
+  storageClass: ""
   security:
     allowInsecureImages: true
