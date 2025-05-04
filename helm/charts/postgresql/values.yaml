@@ -7,6 +7,11 @@ postgresql:
     tag: pg17-v0.0.0-nightly.20250227
 
   primary:
+    securityContext:
+      runAsUser: 1001
+      runAsGroup: 1001
+      fsGroup: 1001
+
     initdb:
       scripts:
         enable_vectors.sql: |
@@ -41,6 +46,9 @@ postgresql:
 
   volumePermissions:
     enabled: true
+    securityContext:
+      runAsUser: 0
+
 
 global:
   security:
