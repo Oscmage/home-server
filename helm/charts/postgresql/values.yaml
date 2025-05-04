@@ -11,8 +11,7 @@ postgresql:
   image:
     tag: 17.4.0
 
-  global:
-    auth:
-      database: immich
-      username: immich
-      password: TODO
+  auth:
+    database: immich
+    username: immich
+    password: TODO
