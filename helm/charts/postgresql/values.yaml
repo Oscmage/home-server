@@ -4,6 +4,8 @@ postgresql:
   primary:
     initdb:
       scripts:
+        enable_vectors.sql: |
+          CREATE EXTENSION vectors;
     persistence:
       size: 8Gi
   image:
