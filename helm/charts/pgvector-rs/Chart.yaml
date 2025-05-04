@@ -1,4 +1,0 @@
-apiVersion: v2
-name: pgvector-rs
-description: A simple pgvector-rs deployment
-version: 0.1.0
