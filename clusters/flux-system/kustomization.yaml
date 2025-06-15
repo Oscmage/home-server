@@ -4,9 +4,7 @@ resources:
 - gotk-components.yaml
 - gotk-sync.yaml
 # NAMESPACES
-- ../../helm/namespaces/cloudflare.yaml
-- ../../helm/namespaces/postgresql.yaml
-- ../../helm/namespaces/bitnami.yaml
+- ../../helm/namespaces/immich.yaml
 # RELEASES
 - ../../helm/flux-helm-releases/immich.yaml
 #- ../../helm/flux-helm-releases/cloudflare_tunnel.yaml
