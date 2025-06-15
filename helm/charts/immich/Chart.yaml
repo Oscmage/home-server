@@ -2,10 +2,10 @@ apiVersion: v2
 name: immich
 description: A simple immich deployment
 version: 0.1.0
-# dependencies:
-#   # - name: immich
-#   #   version: 0.9.3
-#   #   repository: oci://ghcr.io/immich-app/immich-charts
-#   - name: cloudflare-tunnel
-#     version: 0.3.2
-#     repository: https://cloudflare.github.io/helm-charts
+dependencies:
+  - name: immich
+    version: 0.9.3
+    repository: oci://ghcr.io/immich-app/immich-charts
+  # - name: cloudflare-tunnel
+  #   version: 0.3.2
+  #   repository: https://cloudflare.github.io/helm-charts
