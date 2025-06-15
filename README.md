@@ -38,3 +38,9 @@ This setup includes:
 
 1. Rename/copy the `.env.template` file to `.env` and update the values.
 2. We are now going to make sure to create the cluster (which will be running k3s), and install fluxcd this is done through terragrunt. Run `terragrunt run-all apply` in `/terragrunt/environments/mac_mini`
+
+# NOTE TO SELF!!!
+
+You need to enable if you have problems with connecting to local network with kubectl:
+
+https://blog.erikhorton.com/2025/01/18/kubectl-no-route-to-host.html

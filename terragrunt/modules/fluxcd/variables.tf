@@ -1,10 +1,10 @@
 variable "target_host" {
-  description = "The target host to install k3d on"
+  description = "The target host to install FluxCD on"
   type        = string
 }
 
 variable "target_user" {
-  description = "The username to use for SSH connection"
+  description = "The user to use for SSH connection"
   type        = string
 }
 
@@ -19,8 +19,13 @@ variable "target_ssh_port" {
   default     = 22
 }
 
+variable "target_sudo_password" {
+  description = "The sudo password for the target user"
+  type        = string
+}
+
 variable "git_repository" {
-  description = "Git repository URL"
+  description = "Git repository name for FluxCD"
   type        = string
 }
 
@@ -31,16 +36,16 @@ variable "git_branch" {
 }
 
 variable "target_path" {
-  description = "Path within the Git repository to store the Flux manifests"
+  description = "Path in the git repository where FluxCD will store its manifests"
   type        = string
-} 
+}
 
 variable "github_token" {
-  description = "GitHub token"
+  description = "GitHub token for FluxCD"
   type        = string
 }
 
 variable "github_user" {
-  description = "GitHub user"
+  description = "GitHub username for FluxCD"
   type        = string
 }
