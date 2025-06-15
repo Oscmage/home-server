@@ -10,30 +10,31 @@ storageClass:
   volumeBindingMode: WaitForFirstConsumer
 
 immich:
-  image:
-    tag: v1.132.3
-  persistence:
-    library:
+  immich: 
+    image:
+      tag: v1.132.3
+    persistence:
+      library:
+        enabled: true
+        # Chart doesn't currently support dynamic PVCs, hence we've created our own pvc
+        # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
+        existingClaim: immich-library
+    server:
       enabled: true
-      # Chart doesn't currently support dynamic PVCs, hence we've created our own pvc
-      # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
-      existingClaim: immich-library
-  server:
-    enabled: true
-    metrics:
+      metrics:
+        enabled: true
+    machine-learning:
       enabled: true
-  machine-learning:
-    enabled: true
-  redis:
-    enabled: true
-  typesense:
-    enabled: true
-  
-  env:
-    DB_HOSTNAME: immich.postgresql
-    DB_DATABASE_NAME: immich
-    DB_USERNAME: immich
-    DB_PASSWORD: TODO
+    redis:
+      enabled: true
+    typesense:
+      enabled: true
+    
+    env:
+      DB_HOSTNAME: immich.postgresql
+      DB_DATABASE_NAME: immich
+      DB_USERNAME: immich
+      DB_PASSWORD: TODO
 
 # Immich requires a PostgreSQL database with pgvecto-rs installed
 # Sadly we have to maintain our own PostgreSQL deployment for now
