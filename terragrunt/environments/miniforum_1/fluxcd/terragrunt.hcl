@@ -20,6 +20,7 @@ inputs = {
   target_user     = local.vars.locals.target_user
   target_private_key = local.vars.locals.target_private_key
   target_ssh_port = local.vars.locals.target_ssh_port
+  target_sudo_password = local.vars.locals.target_sudo_password
   git_repository = local.vars.locals.git_repository
   git_branch     = local.vars.locals.git_branch
   target_path    = local.vars.locals.target_path
