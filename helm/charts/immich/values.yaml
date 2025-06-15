@@ -19,8 +19,11 @@ immich:
       # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
       existingClaim: immich-library
   server:
+    enabled: true
     metrics:
       enabled: true
+  machine-learning:
+    enabled: true
   redis:
     enabled: true
   typesense:
