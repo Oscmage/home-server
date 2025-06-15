@@ -8,19 +8,13 @@ variable "target_user" {
   type        = string
 }
 
-variable "target_password" {
-  description = "The password to use for SSH connection"
-  type        = string
-}
-
 variable "target_ssh_port" {
   description = "The SSH port to use for connection"
   type        = number
   default     = 22
 }
 
-variable "cluster_name" {
-  description = "The name of the cluster to create"
+variable "target_private_key" {
+  description = "The private key to use for SSH connection"
   type        = string
 }
-

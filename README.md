@@ -1,6 +1,6 @@
 # Home Server Setup
 
-This repository contains the infrastructure as code and configuration for a Mac home server setup. This has only been tested with a Mac Mini M1 (2020).
+This repository contains the infrastructure as code and configuration for a Linx server setup. This has only been tested with a Linux Server 24 LTS.
 
 ## Is this overkill?
 
@@ -14,8 +14,8 @@ This repository contains the infrastructure as code and configuration for a Mac 
 ## Overview
 
 This setup includes:
-- Mac Mini M1 running as a home server
-- k3d for lightweight Kubernetes
+- Linux Server running as a home server
+- k3s for lightweight Kubernetes
 - SSH access restricted to local network
 - External access through Cloudflare Tunnel
 - GitOps-style continuous deployment using FluxCD
@@ -37,4 +37,4 @@ This setup includes:
 ## Getting Started
 
 1. Rename/copy the `.env.template` file to `.env` and update the values.
-2. We are now going to make sure to create the cluster (which will be running k3s with the help of k3d), and install fluxcd this is done through terragrunt. Run `terragrunt run-all apply` in `/terragrunt/environments/mac_mini`
+2. We are now going to make sure to create the cluster (which will be running k3s), and install fluxcd this is done through terragrunt. Run `terragrunt run-all apply` in `/terragrunt/environments/mac_mini`

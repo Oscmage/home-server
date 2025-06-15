@@ -9,7 +9,7 @@ locals {
   # Set variables with validation and defaults
   target_host     = try(local.env_vars["TARGET_HOST"], error("TARGET_HOST is required in .env file"))
   target_user     = try(local.env_vars["TARGET_USER"], error("TARGET_USER is required in .env file"))
-  target_password = try(local.env_vars["TARGET_PASSWORD"], error("TARGET_PASSWORD is required in .env file"))
+  target_private_key = try(local.env_vars["TARGET_PRIVATE_KEY"], error("TARGET_PRIVATE_KEY location is required in .env file"))
   target_ssh_port = try(local.env_vars["TARGET_SSH_PORT"], "22")  # Default to 22 if not specified
   cluster_name    = try(local.env_vars["CLUSTER_NAME"], error("CLUSTER_NAME is required in .env file"))
   github_token    = try(local.env_vars["GITHUB_TOKEN"], error("GITHUB_TOKEN is required in .env file"))
@@ -20,4 +20,5 @@ locals {
   db_password     = try(local.env_vars["DB_PASSWORD"], error("DB_PASSWORD is required in .env file"))
   immich_version  = try(local.env_vars["IMMICH_VERSION"], "release")
   cloudflare_tunnel_token = try(local.env_vars["CLOUDFLARE_TUNNEL_TOKEN"], error("CLOUDFLARE_TUNNEL_TOKEN is required in .env file"))
+  target_sudo_password   = try(local.env_vars["TARGET_SUDO_PASSWORD"], error("TARGET_SUDO_PASSWORD is required in .env file"))
 } 

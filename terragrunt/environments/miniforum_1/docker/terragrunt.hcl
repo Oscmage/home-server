@@ -8,13 +8,12 @@ locals {
 }
 
 terraform {
-  source = "../../../modules/k3d"
+  source = "../../../modules/docker"
 }
 
 inputs = {
   target_host     = local.vars.locals.target_host
   target_user     = local.vars.locals.target_user
-  target_password = local.vars.locals.target_password
+  target_private_key = local.vars.locals.target_private_key
   target_ssh_port = local.vars.locals.target_ssh_port
-  cluster_name    = local.vars.locals.cluster_name
 } 

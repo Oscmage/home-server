@@ -8,8 +8,8 @@ variable "target_user" {
   type        = string
 }
 
-variable "target_password" {
-  description = "The password to use for SSH connection"
+variable "target_private_key" {
+  description = "The private key to use for SSH connection"
   type        = string
 }
 
