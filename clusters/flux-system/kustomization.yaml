@@ -8,6 +8,6 @@ resources:
 - ../../helm/namespaces/postgresql.yaml
 - ../../helm/namespaces/bitnami.yaml
 # RELEASES
-- ../../helm/flux-helm-releases/immich.yaml
+#- ../../helm/flux-helm-releases/immich.yaml
 #- ../../helm/flux-helm-releases/cloudflare_tunnel.yaml
 
