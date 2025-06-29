@@ -42,7 +42,7 @@ immich:
 postgresql:
   image: 
     repository: tensorchord/pgvecto-rs
-    tag: pg17-v0.0.0-nightly.20250227
+    tag: pg14-v0.3.0
     pullPolicy: IfNotPresent
 
   postgresql:
