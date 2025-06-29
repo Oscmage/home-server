@@ -12,12 +12,13 @@ storageClass:
 immich:
   image:
     tag: v1.132.3
-  persistence:
-    library:
-      enabled: true
-      # Chart doesn't currently support dynamic PVCs, hence we've created our own pvc
-      # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
-      existingClaim: immich-library
+  immich: 
+    persistence:
+      library:
+        enabled: true
+        # Chart doesn't currently support dynamic PVCs, hence we've created our own pvc
+        # https://github.com/immich-app/immich-charts/blob/main/charts/immich/values.yaml
+        existingClaim: immich-library
   server:
     enabled: true
     metrics:
