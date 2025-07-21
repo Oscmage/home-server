@@ -1,0 +1,19 @@
+external-secrets:
+  namespace: external-secrets
+  bitwarden-sdk-server:
+    enabled: true
+
+secretStore:
+  name: bitwarden-secret-store
+  bitwardenSecretStore:
+    apiURL: https://api.bitwarden.com
+    identityURL: https://identity.bitwarden.com
+    auth:
+      secretRef:
+        credentials:
+          key: token
+          name: bitwarden-access-token
+    bitwardenServerSDKURL: https://bitwarden-sdk-server.external-secrets.svc.cluster.local:9998
+    caBundle: <INSERT REAL VALUE HERE>
+    organizationID: 4f3b6614-2bc1-4d33-aa84-b32100c5f6ed
+    projectID: d319385f-f9ad-41c4-85a2-b32101479330
