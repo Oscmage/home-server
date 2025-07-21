@@ -5,7 +5,9 @@ resources:
 - gotk-sync.yaml
 # NAMESPACES
 - ../../helm/namespaces/immich.yaml
+- ../../helm/namespaces/registry.yaml
+- ../../helm/namespaces/cert-manager.yaml
 # RELEASES
 - ../../helm/flux-helm-releases/immich.yaml
-#- ../../helm/flux-helm-releases/cloudflare_tunnel.yaml
-
+- ../../helm/flux-helm-releases/registry.yaml
+- ../../helm/flux-helm-releases/cert-manager.yaml
