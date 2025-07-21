@@ -2,5 +2,8 @@ dependencies:
 - name: docker-registry
   repository: https://helm.twun.io
   version: 2.3.0
-digest: sha256:cd2952e96218a001d8691ae79ea4816f0e3400a8f24286b36d7a3a348376e8d8
-generated: "2025-07-21T23:24:04.751057+02:00"
+- name: cloudflare-tunnel
+  repository: file://../cloudflare-tunnel
+  version: 0.1.0
+digest: sha256:cc5d2038ba83ef68e464746c7a8350c5e4dd3315e42d0f1234898af574f5a1d1
+generated: "2025-07-21T23:44:50.219098+02:00"

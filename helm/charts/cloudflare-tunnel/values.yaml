@@ -1,0 +1,7 @@
+# Cloudflare Tunnel Configuration
+
+# Namespace where the tunnel will be deployed
+namespace: ""
+
+# Bitwarden item ID for the tunnel token
+bitwardenTokenRef: "" 

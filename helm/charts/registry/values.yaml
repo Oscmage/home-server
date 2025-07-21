@@ -72,3 +72,8 @@ docker-registry:
 
   # Affinity (optional)
   affinity: {}
+
+# Cloudflare Tunnel Configuration
+cloudflare-tunnel:
+  namespace: registry
+  bitwardenTokenRef: "90d6aad7-99f8-4907-b839-b3210151aa8c"
