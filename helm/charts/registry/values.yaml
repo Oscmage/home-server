@@ -25,7 +25,7 @@ docker-registry:
     htpasswd:
       enabled: true
       # This will be created by the secret below
-      secretName: registry-auth
+      secretName: registry-htpasswd-secret
 
   # Registry configuration
   config:
