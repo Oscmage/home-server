@@ -28,13 +28,12 @@ spec:
   refreshInterval: 1h
   secretStoreRef:
     # This name must match the metadata.name in the `SecretStore`
-    name: {{ .Values.secretStore.name }}
-    kind: SecretStore
+    name: bitwarden-secret-store
+    kind: ClusterSecretStore
   data:
   - secretKey: test
     remoteRef:
       key: "f909240a-a550-44ae-8dda-b321014c2283"
-
 ```
 
 ### Multiple secrets from valid json
@@ -48,8 +47,8 @@ spec:
   refreshInterval: 1h
   secretStoreRef:
     # This name must match the metadata.name in the `SecretStore`
-    name: {{ .Values.secretStore.name }}
-    kind: SecretStore
+    name: bitwarden-secret-store
+    kind: ClusterSecretStore
   target:
     name: multiple-test  # name of the k8s Secret to be created
     creationPolicy: Owner
