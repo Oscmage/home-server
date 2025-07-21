@@ -1,0 +1,74 @@
+# Docker Registry Configuration
+# This is a wrapper around the twuni/docker-registry chart
+
+docker-registry:
+  # Image configuration
+  image:
+    repository: registry
+    tag: "2.8.2"
+    pullPolicy: IfNotPresent
+
+  # Service configuration
+  service:
+    type: ClusterIP
+    port: 5000
+
+  # Persistence configuration
+  persistence:
+    enabled: true
+    storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 10Gi
+
+  # Authentication configuration
+  auth:
+    htpasswd:
+      enabled: true
+      # This will be created by the secret below
+      secretName: registry-auth
+
+  # Registry configuration
+  config:
+    version: 0.1
+    log:
+      level: info
+    storage:
+      filesystem:
+        rootdirectory: /var/lib/registry
+      delete:
+        enabled: true
+    auth:
+      htpasswd:
+        realm: basic-realm
+        path: /etc/registry/auth/htpasswd
+    http:
+      addr: :5000
+      headers:
+        X-Content-Type-Options: [nosniff]
+    # Proxy configuration for caching
+    proxy:
+      remoteurl: https://registry-1.docker.io
+
+  # Security context
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 1000
+    fsGroup: 1000
+
+  # Resources
+  resources:
+    requests:
+      memory: "256Mi"
+      cpu: "100m"
+    limits:
+      memory: "512Mi"
+      cpu: "500m"
+
+  # Node selector (optional)
+  nodeSelector: {}
+
+  # Tolerations (optional)
+  tolerations: []
+
+  # Affinity (optional)
+  affinity: {}
