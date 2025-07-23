@@ -13,6 +13,7 @@ spec:
       labels:
         {{- include "cloudflare-tunnel.selectorLabels" . | nindent 8 }}
     spec:
+      serviceAccountName: {{ include "cloudflare-tunnel.fullname" . }}
       securityContext:
         sysctls:
         # Allows ICMP traffic (ping, traceroute) to resources behind cloudflared.
