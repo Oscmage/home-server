@@ -2,5 +2,8 @@ dependencies:
 - name: immich
   repository: oci://ghcr.io/immich-app/immich-charts
   version: 0.9.3
-digest: sha256:d62fd0d58246b0a5c4591b5c51e760f6e58524deecacba4eaa20258146d562e0
-generated: "2025-06-15T20:56:10.666383+02:00"
+- name: cloudflare-tunnel
+  repository: file://../cloudflare-tunnel
+  version: 0.1.0
+digest: sha256:5b220667c8628dbef8ed68970360d84b48a448acc0a940022389f9b9e7f2eb52
+generated: "2025-07-23T18:31:30.33802+02:00"

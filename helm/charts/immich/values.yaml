@@ -11,7 +11,7 @@ storageClass:
 
 immich:
   image:
-    tag: v1.132.3
+    tag: v1.135.3
   immich:
     persistence:
       library:
@@ -34,7 +34,7 @@ immich:
     DB_HOSTNAME: postgresql
     DB_DATABASE_NAME: immich
     DB_USERNAME: immich
-    DB_PASSWORD: TODO
+    DB_PASSWORD: <TODO ADD PASSWORD BEFORE DEPLOYMENT>
 
 # Immich requires a PostgreSQL database with pgvecto-rs installed
 # Sadly we have to maintain our own PostgreSQL deployment for now
@@ -48,7 +48,6 @@ postgresql:
   postgresql:
     database: immich
     user: immich
-    password: TODO
     dataChecksum: "--data-checksums"
 
   persistence:
@@ -80,26 +79,6 @@ redis:
       memory: 256Mi
       cpu: 200m
 
-# cloudflare-tunnel:
-#   cloudflare:
-#     # Your Cloudflare account number.
-#     account: "TODO"
-#     # The name of the tunnel this instance will serve
-#     tunnelName: "TODO"
-#     # The ID of the above tunnel.
-#     tunnelId: "TODO"
-#     # The secret for the tunnel.
-#     secret: "TODO"
-#     # If defined, no secret is created for the credentials, and instead, the secret referenced is used
-#     secretName: null
-#     # Define ingress rules for the tunnel. See
-#     # https://developers.cloudflare.com/cloudflare-one/connections/connect-apps/configuration/configuration-file/ingress
-#     ingress: []
-#       # The first rule proxies traffic to the httpbin sample service named web-server at port 80
-#       # - hostname: tunnel.example.com
-#       #  service: http://web-service:80
-#       # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
-#       # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is
-#       # in the connection from cloudflared to your local service, not from the internet to cloudflared.
-#       # - hostname: hello.example.com
-#       #   service: hello_world
+cloudflare-tunnel:
+  namespace: immich
+  bitwardenTokenRef: "70cb75db-443b-4e56-8f2c-b323010ecb17"
