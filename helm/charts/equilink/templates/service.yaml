@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: equilink
+  namespace: {{ .Values.equilink.namespace }}
+spec:
+  type: {{ .Values.equilink.service.type }}
+  ports:
+    - port: {{ .Values.equilink.service.port }}
+      targetPort: {{ .Values.equilink.service.targetPort }}
+      protocol: TCP
+      name: http
+  selector:
+    app: equilink 

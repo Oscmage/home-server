@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: equilink
+  namespace: {{ .Values.equilink.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: equilink
+  template:
+    metadata:
+      labels:
+        app: equilink
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsGroup: 1000
+      initContainers:
+        - name: equilink-migrate
+          image: "{{ .Values.equilink.image.repository }}:{{ .Values.equilink.image.tag }}"
+          imagePullPolicy: {{ .Values.equilink.image.pullPolicy }}
+          workingDir: /app
+          command: ["/venv/bin/python"]
+          args: ["-m", "alembic", "upgrade", "head"]
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: equilink-postgres-secret
+                  key: migration_url
+          securityContext:
+            runAsUser: 1000
+      containers:
+        - name: equilink
+          image: "{{ .Values.equilink.image.repository }}:{{ .Values.equilink.image.tag }}"
+          imagePullPolicy: {{ .Values.equilink.image.pullPolicy }}
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: equilink-postgres-secret
+                  key: url
+            - name: LOG_LEVEL
+              value: {{ .Values.equilink.logLevel | default "INFO" | quote }}
+            - name: API_TITLE
+              value: {{ .Values.equilink.api.title | default "Equilink API" | quote }}
+            - name: API_DESCRIPTION
+              value: {{ .Values.equilink.api.description | default "Direct Share Issue System API" | quote }}
+            - name: SECRET_KEY
+              value: {{ .Values.equilink.security.secretKey | default "your-secret-key-change-in-production" | quote }}
+            - name: JWT_ALGORITHM
+              value: {{ .Values.equilink.security.jwtAlgorithm | default "HS256" | quote }}
+            - name: ACCESS_TOKEN_EXPIRE_MINUTES
+              value: "{{ .Values.equilink.security.accessTokenExpireMinutes | default 30 }}"
+            - name: COOKIE_SECURE
+              value: "{{ .Values.equilink.cookie.secure | default false }}"
+          ports:
+            - containerPort: {{ .Values.equilink.service.port }}
+          resources:

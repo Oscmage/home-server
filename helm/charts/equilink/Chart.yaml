@@ -1,0 +1,13 @@
+apiVersion: v2
+name: equilink
+description: A Helm chart for Equilink backend
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies:
+  - name: postgresql
+    version: 16.7.20
+    repository: https://charts.bitnami.com/bitnami
+  - name: cloudflare-tunnel
+    version: 0.1.0
+    repository: file://../cloudflare-tunnel 

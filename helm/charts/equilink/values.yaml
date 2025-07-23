@@ -1,0 +1,71 @@
+# Equilink Configuration
+equilink:
+  namespace: equilink
+  image:
+    repository: registry.oscarevertsson.com/equilink
+    tag: latest
+    pullPolicy: Always
+  
+  # Logging configuration
+  logLevel: "INFO"
+  
+  # API configuration
+  api:
+    title: "Equilink API"
+    description: "Direct Share Issue System API"
+  
+  # Security configuration
+  security:
+    secretKey: "your-secret-key-change-in-production"
+    jwtAlgorithm: "HS256"
+    accessTokenExpireMinutes: 30
+  
+  # Cookie configuration
+  cookie:
+    secure: true
+  
+  # Service configuration
+  service:
+    type: ClusterIP
+    port: 8000
+    targetPort: 8000
+  
+  # Persistence configuration
+  persistence:
+    enabled: true
+    storageClass: ""
+    accessMode: ReadWriteOnce
+    size: 1Gi
+  
+  # Resources
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "200m"
+  
+  # Image pull secrets for local registry
+  imagePullSecrets:
+    - name: registry-auth
+
+# PostgreSQL configuration (Bitnami chart)
+postgresql:
+  enabled: true
+  auth:
+    database: equilink
+    username: equilink
+    existingSecret: equilink-postgres-secret
+    secretKeys:
+      adminPasswordKey: postgres-password
+      userPasswordKey: password
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+
+# Cloudflare Tunnel Configuration
+cloudflare-tunnel:
+  namespace: equilink
+  bitwardenTokenRef: "effe12e6-ebe9-4d38-b5e9-b323010c56e0"
