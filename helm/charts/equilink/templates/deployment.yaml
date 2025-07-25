@@ -56,6 +56,20 @@ spec:
               value: "{{ .Values.equilink.security.accessTokenExpireMinutes | default 30 }}"
             - name: COOKIE_SECURE
               value: "{{ .Values.equilink.cookie.secure | default false }}"
+            - name: MINIO_ENDPOINT
+              value: "http://{{ .Release.Name }}-minio.{{ .Values.equilink.namespace }}.svc.cluster.local:{{ .Values.minio.api.service.port }}"
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: equilink-minio-secret
+                  key: root-user
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: equilink-minio-secret
+                  key: root-password
+            - name: MINIO_BUCKET_NAME
+              value: {{ .Values.minio.defaultBuckets | default "equilink-files" | quote }}
           ports:
             - containerPort: {{ .Values.equilink.service.port }}
           resources:
