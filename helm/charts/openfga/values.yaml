@@ -1,0 +1,41 @@
+# OpenFGA Configuration
+namespace: openfga
+openfga:
+  replicaCount: 2
+  nameOverride: openfga
+  fullnameOverride: openfga
+  image:
+    repository: openfga/openfga
+    pullPolicy: Always
+    tag: "v1.9.2"
+
+  authn:
+    method: preshared
+    preshared:
+      keysSecret: "openfga"
+
+  datastore:
+    engine: postgres
+    uriSecret: "openfga"
+    applyMigrations: true
+    migrationType: "job"
+    #waitForMigrations: true
+
+  experimentals: 
+    - enable-list-objects-optimizations
+
+postgresql:
+  enabled: true
+  auth:
+    database: openfga
+    username: openfga
+    existingSecret: openfga
+    secretKeys:
+      adminPasswordKey: postgres-admin-password
+      userPasswordKey: postgres-password
+  primary:
+    persistence:
+      enabled: true
+      size: 1Gi
+
+

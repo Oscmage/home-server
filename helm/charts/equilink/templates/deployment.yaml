@@ -28,8 +28,8 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: equilink-postgres-secret
-                  key: migration_url
+                  name: equilink
+                  key: database_migration_url
           securityContext:
             runAsUser: 1000
       containers:
@@ -40,8 +40,8 @@ spec:
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:
-                  name: equilink-postgres-secret
-                  key: url
+                  name: equilink
+                  key: database_url
             - name: LOG_LEVEL
               value: {{ .Values.equilink.logLevel | default "INFO" | quote }}
             - name: API_TITLE
@@ -61,15 +61,22 @@ spec:
             - name: MINIO_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
-                  name: equilink-minio-secret
-                  key: root-user
+                  name: equilink
+                  key: minio_root_user
             - name: MINIO_SECRET_KEY
               valueFrom:
                 secretKeyRef:
-                  name: equilink-minio-secret
-                  key: root-password
+                  name: equilink
+                  key: mini_root_password
             - name: MINIO_BUCKET_NAME
               value: "equilink-files"
+            - name: OPENFGA_URL
+              value: "http://openfga.openfga.svc.cluster.local:8080"
+            - name: OPENFGA_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: equilink
+                  key: openfga_secret
           ports:
             - containerPort: {{ .Values.equilink.service.port }}
           resources:

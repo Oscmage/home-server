@@ -56,10 +56,10 @@ postgresql:
   auth:
     database: equilink
     username: equilink
-    existingSecret: equilink-postgres-secret
+    existingSecret: equilink
     secretKeys:
-      adminPasswordKey: postgres-password
-      userPasswordKey: password
+      adminPasswordKey: postgres_admin_password
+      userPasswordKey: postgres_password
   primary:
     persistence:
       enabled: true
