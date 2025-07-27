@@ -57,7 +57,7 @@ spec:
             - name: COOKIE_SECURE
               value: "{{ .Values.equilink.cookie.secure | default false }}"
             - name: MINIO_ENDPOINT
-              value: "http://{{ .Release.Name }}-minio.{{ .Values.equilink.namespace }}.svc.cluster.local:{{ .Values.minio.api.service.port }}"
+              value: "http://minio.minio.svc.cluster.local:9000"
             - name: MINIO_ACCESS_KEY
               valueFrom:
                 secretKeyRef:
@@ -69,7 +69,7 @@ spec:
                   name: equilink-minio-secret
                   key: root-password
             - name: MINIO_BUCKET_NAME
-              value: {{ .Values.minio.defaultBuckets | default "equilink-files" | quote }}
+              value: "equilink-files"
           ports:
             - containerPort: {{ .Values.equilink.service.port }}
           resources:

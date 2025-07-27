@@ -11,6 +11,3 @@ dependencies:
   - name: cloudflare-tunnel
     version: 0.1.0
     repository: file://../cloudflare-tunnel
-  - name: minio
-    version: 17.0.15
-    repository: https://charts.bitnami.com/bitnami 

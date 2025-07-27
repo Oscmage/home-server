@@ -5,8 +5,8 @@ dependencies:
 - name: cloudflare-tunnel
   repository: file://../cloudflare-tunnel
   version: 0.1.0
-- name: minio
-  repository: https://charts.bitnami.com/bitnami
-  version: 17.0.15
-digest: sha256:16c487419a379e95e5522c6c6f8bf48bf7b2368007b3b93eb8b63f5dd5f3486b
-generated: "2025-07-25T15:46:03.882728+02:00"
+- name: openfga
+  repository: https://openfga.github.io/helm-charts
+  version: 0.2.38
+digest: sha256:b5b2483a3ab2670f9bfefb74b0b44cdc3f4465818308e9bb79643714ece7316f
+generated: "2025-07-27T14:42:09.437977+02:00"
