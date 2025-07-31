@@ -70,7 +70,7 @@ spec:
                   key: mini_root_password
             - name: MINIO_BUCKET_NAME
               value: "equilink-files"
-            - name: OPENFGA_URL
+            - name: OPENFGA_API_URL
               value: "http://openfga.openfga.svc.cluster.local:8080"
             - name: OPENFGA_SECRET
               valueFrom:

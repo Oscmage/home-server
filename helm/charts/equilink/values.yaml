@@ -3,7 +3,7 @@ equilink:
   namespace: equilink
   image:
     repository: registry.oscarevertsson.com/equilink
-    tag: latest
+    tag: main-42380fe
     pullPolicy: Always
   
   # Logging configuration
