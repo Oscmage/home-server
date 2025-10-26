@@ -1,0 +1,40 @@
+# Digipiggy Configuration
+digipiggy:
+  namespace: digipiggy
+  image:
+    repository: registry.oscarevertsson.com/digipiggy-server
+    tag: latest
+    pullPolicy: Always
+  
+  # Logging configuration
+  logLevel: "INFO"
+  
+  # API configuration
+  api:
+    title: "Digipiggy API"
+    description: "Digipiggy API"
+  
+  # Service configuration
+  service:
+    type: ClusterIP
+    port: 8000
+    targetPort: 8000
+  
+  # Resources
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "200m"
+  
+  # Image pull secrets for local registry
+  imagePullSecrets:
+    - name: registry-auth
+
+# Cloudflare Tunnel Configuration
+cloudflare-tunnel:
+  namespace: digipiggy
+  bitwardenTokenRef: "45bf007c-723a-46ed-8a8e-b38200c985f5"
+

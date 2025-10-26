@@ -1,0 +1,11 @@
+apiVersion: v2
+name: digipiggy
+description: A Helm chart for Digipiggy backend
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+dependencies:
+  - name: cloudflare-tunnel
+    version: 0.1.0
+    repository: file://../cloudflare-tunnel
+

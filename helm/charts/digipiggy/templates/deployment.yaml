@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: digipiggy
+  namespace: {{ .Values.digipiggy.namespace }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: digipiggy
+  template:
+    metadata:
+      labels:
+        app: digipiggy
+    spec:
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+        runAsGroup: 1000
+      containers:
+        - name: digipiggy
+          image: "{{ .Values.digipiggy.image.repository }}:{{ .Values.digipiggy.image.tag }}"
+          imagePullPolicy: {{ .Values.digipiggy.image.pullPolicy }}
+          env:
+            - name: LOG_LEVEL
+              value: {{ .Values.digipiggy.logLevel | default "INFO" | quote }}
+            - name: API_TITLE
+              value: {{ .Values.digipiggy.api.title | default "Digipiggy API" | quote }}
+            - name: API_DESCRIPTION
+              value: {{ .Values.digipiggy.api.description | default "Digipiggy API" | quote }}
+          ports:
+            - containerPort: {{ .Values.digipiggy.service.port }}
+          resources:
+            requests:
+              memory: {{ .Values.digipiggy.resources.requests.memory }}
+              cpu: {{ .Values.digipiggy.resources.requests.cpu }}
+            limits:
+              memory: {{ .Values.digipiggy.resources.limits.memory }}
+              cpu: {{ .Values.digipiggy.resources.limits.cpu }}
+
