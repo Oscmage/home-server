@@ -3,7 +3,7 @@ digipiggy:
   namespace: digipiggy
   image:
     repository: registry.oscarevertsson.com/digipiggy-server
-    tag: latest
+    tag: main-0caf135
     pullPolicy: Always
   
   # Logging configuration

@@ -1,0 +1,6 @@
+dependencies:
+- name: cloudflare-tunnel
+  repository: file://../cloudflare-tunnel
+  version: 0.1.0
+digest: sha256:2c47599317954a52d83a3fb2a592195b3520f122c647beff31105030d853c184
+generated: "2025-10-26T13:55:35.92054+01:00"
